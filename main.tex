@@ -30,7 +30,7 @@
 Modeling and simulation of the R5912 photomultiplier for the LAGO project
 }
 
-\author{S. Hern\'andez-Barajas$^{1}$, Y. Le\'on-Carre\~no$^{1}$, J. Pe\~na-Rodr\'iguez$^{2}$, A. V\'asquez-Ram\'irez$^{2}$, L. A. N\'u\~nez$^{2,3}$\\ for the LAGO collaboration% <-this % stops a space
+\author{S. Hern\'andez-Barajas$^{1}$, Y. Le\'on-Carre\~no$^{1}$, J. Pe\~na-Rodr\'iguez$^{2}$, L. A. N\'u\~nez$^{2,3}$\\ for the LAGO collaboration% <-this % stops a space
 \thanks{$^{1}$ Escuela de Ingenierías El\'ectrica, Electr\'onica y de Telecomunicaciones, Universidad Industrial de Santander, Carrera 27 y Calle 9, 640002 Bucaramanga, Colombia.
 }
 \thanks{$^{2}$Escuela de F\'isica, Universidad Industrial de Santander, Carrera 27 y Calle 9, 640002 Bucaramanga, Colombia.}
@@ -42,30 +42,29 @@ Modeling and simulation of the R5912 photomultiplier for the LAGO project
 \thispagestyle{empty}
 \pagestyle{empty}
 
+% , A. V\'asquez-Ram\'irez$^{2}$
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The LAGO project is an international experiment placed along Latin America at different altitudes joining more than 25 institutions of 9 countries. It is mainly oriented to basic research on Gamma Ray Bursts and Space Weather phenomena. The LAGO network consists of single or small arrays of water Cherenkov detectors (WCD) composed mainly by a photomultiplier (PMT) and an electronics readout to acquire single-particle or Extended Air Showers (EAS) events triggered by interaction of cosmic rays and the Earth atmosphere. In this work, we present the results of modeling and simulation of the PMT Hamamatsu R5912 and its bias base used in the WCDs of the LAGO. The measurements are also compared with a basis implemented in the surface detectors (SD) of the Pierre Auger Observatory in order to assess our base performance.
+We present the results of modeling and simulating the Hamamatsu R5912 photomultiplier tube used in the LAGO collaboration. The model was compared with data of in-operation water Cherenkov detectors (WCD) installed at Bucaramanga-Colombia and Bariloche-Argentina. The LAGO project is an international experiment placed along Latin America at different altitudes joining more than 25 institutions of 9 countries. It is mainly oriented to basic research on Gamma-Ray Bursts and Space Weather phenomena. The LAGO network consists of single or small arrays of WCDs composed mainly by a photomultiplier tube and a readout electronics that acquires single-particle or Extended Air Shower (EAS) events triggered by the interaction of cosmic rays with the Earth atmosphere. 
 \end{abstract}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{INTRODUCTION}
 
-Astrophysical phenomena is studied by means of giant Cosmic Ray (CR) observatories spread around the world. Such experiments located at ground level detects atmospheric particle showers resulting from the interaction of high energy primary CRs with atmospheric gases. The EAS detection is made using different techniques taking advantage of the signal that charged particles can leave along their pathway. At ground level the shower of charged particles is recorded by arrays of Cherenkov counters and scintillators getting information of the shower front, composition and estimation of the primary energy. Information of the longitudinal development of EAS can be interpreted directly from the electromagnetic radiation that is generated mainly by the electrons and positrons of the shower passing along the atmosphere. That radiation can be recorded by fluorescence telescopes (hz) (ref), Imaging Atmospheric (or Air) Cherenkov Telescopes (IACTs)(hz) (ref) and radio antennas (hz) (ref).
+Astrophysical phenomena is studied by means of giant Cosmic Ray (CR) observatories spread around the world. Such experiments located at ground level detects atmospheric particle showers resulting from the interaction of high energy primary CRs with atmospheric gases. The EAS detection is made using different techniques taking advantage of the signal that charged particles leave along their pathway. At ground level the EAS is detected by arrays of Cherenkov counters, scintillators or antennas getting information of the shower front, composition and primary energy. The longitudinal development of the EAS is directly interpreted from the electromagnetic radiation created by photons, electrons and positrons crossing the atmosphere. This EAS component is detected by fluorescence telescopes \cite{Neesal2011}, Imaging Atmospheric (or Air) Cherenkov Telescopes (IACTs) \cite{Schoorlemmer2019} and radio antennas \cite{Aab2016, Schrder2016}.
 
-%Depending on the energy of the primary the footprint of the EAS at ground level can range several kilometers which force the building of extensive observatories. 
+The LAGO project was founded by latinamerican scientists working on the Pierre Auger Observatory with the goal of creating a collaboration project in astroparticle physics research to train young scientists in Latin America. LAGO consists of a network of own made Cherenkov counters spanning over different sites located at several latitudes (from Mexico to the Antarctic) and altitudes (from sea level up to 5000 m.a.s.l.). 
 
-LAGO project was founded by latinamerican scientists working on the Pierre Auger Observatory with the goal of creating a collaboration project in astroparticle physics research addressed to formation of young scientists in Latin America on that field. LAGO consists of a network of own made Cherenkov counters spanning over different sites located at significantly different latitudes (currently from Mexico up to the Antarctic region) and different altitudes (from sea level up to more than 5000 meters over sea level). The LAGO Cherenkov detectors (WCD) are made by cylindrical containers of plastic, metal or fibreglass with an internal Tyvek coating for enhancing its optical properties (reflection and diffusion) and in this order the transmission efficiency of the Cherenkov photons generated inside by action of charged passing particles. The Cherenkov radiation is collected by an eight inches PMT R5912 from Hamamatsu located in the top-center inside the WCD. The pulses generated by the PMT from the anode and last dynode are digitized by a 10 bits Fast Analog-to-Digital Converter (FADC) working at 40 MHz in a 12 samples vector which is stored within a nanosecond time stamp 25 ns resolution.
+The WCD network of LAGO is able to detect short duration transients --like gamma-ray bursts (GRBs)-- and long duration transients --like Forbush decreases-- \cite{Durn2016} by searching changes in the cosmic ray background recorded using the single particle technique. LAGO operates in energies ranging from 0.5 GeV to tens of TeV.
 
+LAGO detectors are made up of cylindrical containers of plastic, metal or fibreglass with an internal Tyvek coating for enhancing its optical properties (reflection and diffusion) and the transmission efficiency of Cherenkov photons generated by crossing charged particles. The Cherenkov radiation is collected by an eight inches Hamamatsu R5912 photomultiplier tube (PMT) located at the center of the WCD cover. The pulses generated by the anode and last dynode of the PMT are digitized by a 10 bits Fast Analog-to-Digital Converter (FADC) working at 40 MHz. A 12 samples vector stores the pulse shape within a nanosecond time stamp of 25 ns resolution.
 
-El array LAGO, conformacion distancias tamaño tanques, energías\\
+A key point in the LAGO WCDs is the calibration process. We establish a conversion rule from the digitized charge in electronic units to deposited energy in vertical-equivalent muons (VEM) \cite{Bertou2006, Galindo2017}. This relationship depends on the linearity of the system: the PMT and the readout electronics. If the PMT response is nonlinear, the conversion rule loses validity. 
 
-Efecto Cherenkov, eficiencia del detector\\
-PMT efecto fotoelectrico y electronica de acondicionamiento\\
-
-Generalidades de los PMT, voltajes ganancia linealidad.
-
+This paper propose a general PMT and bias chain model which is tuned with the LAGO's PMT parameters. The model allow us to assess the electronics front-end linearity under different acquisition conditions. The simulation performance is validated with data measurements from the Nahuelito, Chitaga, and MuTe sites. 
 
 \section{METHODS}
 
@@ -73,17 +72,15 @@ Generalidades de los PMT, voltajes ganancia linealidad.
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/PMT.eps}
+\includegraphics[width=0.48\textwidth]{Figures/PMT.eps}
 \caption{PMT functioning sketch. The incident photon impinges the photocathode releasing a primary electron which create a secondary electron avalanche due to the electric field generated along the dynodes. All the PMT parts are encapsulated in a vacuum glass tube.}
-\label{Gain_curve}
+\label{PMT_sketch}
 \end{center}
 \end{figure}
 
-A PMT is an optoelectronic device which generates a measurable electric current ($\sim$ mA) by means of photoelectric effect when a photon impinges it. The primary electron knocked away from the photocathode when a photon hits it is subjected to an electrical field created by a potential difference between the dynodes causing than the electron increases its energy pulling up more electrons when it hits the next dynode. This avalanche of secondary electrons along the dynodes is seeming as an amplification of the current that can reach a gain factor of 10$^5$-10$^6$.
+A PMT is an optoelectronic device which generates a measurable electric current ($\sim$ mA) by means of the photoelectric effect when a photon impinges its photocathode. The primary electron is accelerated by a potential difference reaching the enough energy for pulling up more electrons from the next dynode. This avalanche of secondary electrons along the dynodes amplifies the anode current until gain factors of 10$^7$. (See Fig. \ref{PMT_sketch}).
 
-
-
-We modeled the PMT R5912 taking into account such basic principle of functioning and its intrinsic parameters such as the number of amplification stages and the gain curve. The total gain of the PMT model is defined as:
+We modeled the PMT R5912 taking into account such basic principle of functioning and its intrinsic parameters: the number of amplification stages and the gain curve. The total gain of the PMT model is defined as:
 
 \begin{equation}
 G = \frac{I_a}{I_k}
@@ -91,27 +88,27 @@ G = \frac{I_a}{I_k}
 
 where $I_a$ is the anode current and $I_k$ is the photocathode current.
 
-On other hand, PMT gain can be expressed as a function of the gain in each stage, as follows:
+The PMT gain can be expressed as a function of the gain in each stage,
 
 \begin{equation}
 G =  \beta \prod_{i=1}^{N}  g_i 
 \end{equation}
 
-where $g_i$ is the gain in each stage, $N$ in the number of dynodes and $\beta$ is the collection efficiency. The gain $g_i$ depends on the inter-dynode voltage $v_i$, as follows:
+where $g_i$ is the gain in each stage, $N$ in the number of dynodes and $\beta$ is the collection efficiency. The gain $g_i$ depends on the inter-dynode voltage $v_i$,
 %If $ \eta \approx 100\%$, then
 
 \begin{equation}
 g_i = k_i v_i^\alpha
 \end{equation}
 
-where $k_i$ is a constant and $ 0.6  \leq \alpha \leq 0.8$ is an intrinsic parameter of the PMT. The total gain (2) can be expressed as the product of all the inter-dynode gains or in function of the PMT bias voltage $V_B$ as:
+where $k_i$ is a constant and $ 0.6  \leq \alpha \leq 0.8$ is an intrinsic parameter of the PMT. The total gain (2) can be expressed as the product of all the inter-dynode gains or in function of the PMT bias voltage $V_B$,
 
 \begin{equation}
 G =  \prod_{i=1}^{N}  k_i (V_B \epsilon_i)^{\alpha} 
 \end{equation}
-where $\epsilon_i$ is the fraction of the bias voltage in each inter-dynode stage as a result of the resistor polarization chain.\\
+where $\epsilon_i$ is the fraction of the bias voltage in each inter-dynode stage as a result of the resistor polarization chain.
 
-Taking the asummption of $\epsilon_i = \epsilon$ and $k_i=k_0$, the total gain is expressed as follows:
+Taking the assumption of $\epsilon_i = \epsilon$ and $k_i=k_0$, the total gain is expressed as follows,
 
 \begin{equation}
 G = k_0^N (V_B \epsilon)^{N\alpha} 
@@ -125,14 +122,14 @@ The last equation describes the behavior of any PMT.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.4\textwidth]{Figures/Gain_curve}
-\caption{Gain curve of the PMT R5912.The gain of the PMT has an exponential relation depending on the high voltage applied between the anode and cathode, \cite{r5912}.}
+\caption{Gain curve of the PMT R5912.The gain of the PMT has an exponential relation depending on the high voltage applied between the anode and cathode.}
 \label{Gain_curve}
 \end{center}
 \end{figure}
 
-In order to get the parameters $\alpha$ and $k_0$ a couple of points $[V_1, G_1]$ and $[V_2, G_2]$ are extracted from the gain versus bias voltage curve of the PMT Hamamatsu R5912 , Fig. \ref{Gain_curve}.\\
+In order to get the parameters $\alpha$ and $k_0$ a couple of points $[V_1, G_1]$ and $[V_2, G_2]$ are extracted from the gain curve of the PMT Hamamatsu R5912. (See Fig. \ref{Gain_curve}).
 
-The values $[1000 V, 3 \times 10^5 ]$ and $[1500 V, 7 \times 10^6]$ were chosen. A pair of equations are derived from (5) for the given points in order to solve the unknown quantifies ($\alpha$, $k_0$).
+The values $[1000 V, 3 \times 10^5 ]$ and $[1500 V, 7 \times 10^6]$ were chosen. A pair of equations are derived from (5) for the given points in order to solve the unknown variables ($\alpha$, $k_0$).
 
 \begin{equation}
 G1 = k_0^N (V_1 \epsilon)^{N \alpha}
@@ -142,7 +139,7 @@ G1 = k_0^N (V_1 \epsilon)^{N \alpha}
 G2 = k_0^N (V_2 \epsilon)^{N \alpha}
 \end{equation}
 
-where the number of dynodes is $N=10$. In the same way, the parameter $\epsilon$ is calculated by means of the voltage distribution ratio in the resistive polarization chain which is provided for the PMT datasheet, Fig. \ref{Chain}.
+where the number of dynodes is $N=10$. The parameter $\epsilon$ is calculated by means of the voltage distribution ratio in the resistive polarization chain which is provided for the PMT datasheet as shown Table \ref{net}.
 
 \begin{table}[ht]
 \centering
@@ -173,24 +170,24 @@ In this case, a linear behavior of the PMT is desired, for this reason, the tape
 \begin{equation}
 \epsilon  \sum_i R_i = 1
 \end{equation}
-where $R_i$ is the ratio in each inter-electrode stage $i$. Therefore, the estimated $\epsilon$ value is 0.02732.\\
+where $R_i$ is the ratio in each inter-electrode stage $i$. The estimated $\epsilon$ value was 0.02732.
 
-Then, an expression for $k_0$ is obtain from (7) as follows
+Then, an expression for $k_0$ is obtain from (7) as follows,
 
 \begin{equation}
 k_0=\sqrt[N]{\frac{G_2}{(V_2\epsilon)^{N \alpha}}}
 \end{equation}
-Replacing (9) in (6) the parameter $\alpha$ is defined as:
+Replacing (9) in (6) the parameter $\alpha$ is,
 
 \begin{equation}
 \alpha=\frac{\log \left( \frac{G_1}{G_2} \right)}{N \log \left( \frac{V_1}{V_2} \right)}
 \end{equation}
-From (9) and (10) $k_0=0.27$ and $\alpha= 0.7768$ are obtained.
+From (9) and (10) we obtain $k_0=0.27$ and $\alpha= 0.7768$.
 
 
 \subsection{PMT and passive biasing network Spice simulation}
 
-The dynodes and anode currents were modeled as function of the parameters $k_0$, $\alpha$ , $\epsilon$, $V_B$ and $N$. The current flowing through $i^{th}$ dynode is defined as follows:
+The dynodes and anode currents were modeled as function of the parameters $k_0$, $\alpha$ , $\epsilon$, $V_B$ and $N$. The current flowing through $i^{th}$ dynode is defined as,
 
 \begin{equation}
 Id_{i} = I_k \frac{k_0^N (V_B \epsilon)^{N \alpha}}{(k_0 (v_i \epsilon)^\alpha)^{N+1-i}}, \ \ \ i=1,2, \cdots N
@@ -203,52 +200,48 @@ Ia = I_k k_0^N (V_B \epsilon)^{N \alpha}
 \label{Ia}
 \end{equation}
 
-The PMT and its biasing network were simulated using the Orcad Pspice software. We used the GVALUE  \cite{Krihely2014} block for modeling the PMT currents flowing along each PMT dynode from the cathode to the anode. This block sets the transfer function described by the equations \ref{Id} and \ref{Ia} for each amplification stage depending on the voltage applied between adjacent dynodes. 
+The PMT and the biasing network were simulated using the Orcad Pspice software. We used the GVALUE  \cite{Krihely2014} block to model the PMT currents flowing from the cathode to the anode along each PMT dynode. This block sets the transfer function described by the equations \ref{Id} and \ref{Ia} for each amplification stage depending on the voltage applied between adjacent dynodes. 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.35\textwidth]{Figures/GVALUE}
-\caption{Elemental gain block used to simulate the inter-dynode stages.}
-\label{Gval}
-\end{center}
-\end{figure}
+% \begin{figure}[h!]
+% \begin{center}
+% \includegraphics[width=0.35\textwidth]{Figures/GVALUE}
+% \caption{Gain block used to simulate the inter-dynode stages.}
+% \label{Gval}
+% \end{center}
+% \end{figure}
 
-Resistive divider networks are the most widely used method to bias PMTs \cite{Camin1999PassiveAA}. In order to reduce the non linearity of the PMT response due to space-charge effect we selected a tapered resistive chain and to use decopling capacitors \cite{Huang_2013}. The resistor values were estimated taking into account the datasheet recommendation of the interdynode ratios presented in the Table \ref{net}. 
+Resistive divider networks are the most widely used method to bias PMTs \cite{Camin1999PassiveAA}. We selected a tapered resistive chain with decoupling capacitors to reduce nonlinearities in the PMT response due to space-charge effect (large current flowing in the dynodes) \cite{Huang_2013, Hamamatsu2007}. The resistor values were estimated taking into account the interdynode ratios presented in the Table \ref{net}. Decoupling capacitors of 20 nF were connected (serial and parallel) in the last six dynodes and the anode.
 
-Decoupling capacitors of 20 nF were connected from the dynode d5 to the anode. The connection between decoupling capacitors is serial and parallel. On the other hand, we filter DC components of the outputs at the anode and last dynode using coupling capacitors of 4.7 nF. For avoiding oscillations in the signal due to reflections by bad impedance coupling during the transmission to the electronics readout we implemented 50 $\Omega$ loads at the outputs. 
+The PMT output signal has a high direct current (DC) bias which can destroy the frontend electronics. We install coupling capacitors of 4.7~nF (C18 and C21) to filter the DC component in the anode and the last dynode output. For avoiding oscillations in the signal due to reflections for bad impedance coupling in the transmission lines we implemented 50 $\Omega$ output loads. 
 
-An amplification stage was connected to the last dynode output in order to have two readable outputs and for increasing the measurable range. When the ADC connected to the amplified dynode is saturated because the pulse amplitude exceeds its range, we read the anode output searching for a complete shaped pulse from which we can obtain clean information. This dynode amplification is around 20 times.
+An amplification stage was connected to the last dynode output to increase the measurable range: if the dynode pulse amplitude saturates the readout system we can recover the pulse shape from the anode output. The operational amplifier AD8011 amplifies 20 times the dynode output and inverts its polarity. The Fig. \ref{Circuit} shows the schema of the designed Spice model.
 
-In Fig. \ref{Circuit} the complete schema of the Spice model is shown.
-
+%When the ADC connected to the amplified dynode is saturated because the pulse amplitude exceeds its range, we read the anode output searching for a complete shaped pulse from which we can obtain clean information.
 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.45\textwidth]{Figures/Circuit}
-\caption{Spice model for the PMT R5912 and its resistive polarization chain.}
+\caption{Spice model for the PMT R5912 and the tapered resistive chain.}
 \label{Circuit}
 \end{center}
 \end{figure}
 
-
-
-
-
-
 \subsection{Incident photon yield and cathode current}
 
-Simulations using the particle-matter interaction code GEANT4 were carried out for modeling the incident photon pulse on the PMT when charged particles pass along the WCD. We injected 10$^5$ muons with 3 GeV energy perpendicularly to a 120 cm height WCD. The average number of Cherenkov photons $N_{\gamma}$ generated along the path were 46857, however only 1617 of such photons reach the optical window of the PMT and around 203.2 photoelectrons $N_{pe}$ were produced in the photocathode due to the quantum efficiency $\eta$ of the PMT R5912. In this case, the maximum $\eta = 22 \%$ (at 390 nm) was taking into account. Then, the number of photo-electrons is
+We carried out simulations using the particle-matter interaction code GEANT4 to characterize the incident photon signal on the PMT cathode generated by charged particles crossing the WCD. We injected 10$^5$ muons of 3 GeV perpendicularly to a 120 cm height WCD \cite{Vasquez2019, Caldern2015}. The average number of Cherenkov photons ($N_{\gamma}$) along the path were 46857, 1617 of such photons reach the PMT optical window and the PMT photocathode releases around 203.2 photo-electrons ($N_{pe} = \eta N_{\gamma}$) taking into account the maximum quantum efficiency ($\eta = 22 \%$ at 390 nm). 
 
-\begin{equation}
-N_{pe} = \eta N_{\gamma}
-\end{equation}
+% The number of photo-electrons is
 
-The number of photoelectrons depending on the arrival time of the incident photons is shown in Fig. \ref{pulse_G4}. The pulse is attenuated following a decreasing exponential tendency with an attenuation time of  42.12 ns and a time extension up 250 ns.
+% \begin{equation}
+% N_{pe} = \eta N_{\gamma}
+% \end{equation}
+
+The shape of the photoelectron pulse at the PMT photocathode depends on the arrival time of the incident photons as shown Fig. \ref{pulse_G4}. The pulse decreases exponentially having an attenuation constant of $\sim$42.12~ns and a time width of $\sim$250~ns.
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/pulse_vem.png}
-\caption{Simulation of the Cherenkov photons number in the Chitaga WCD for a muon of 1 GeV (green line) and 10 GeV (red line). }
+\includegraphics[width=0.45\textwidth]{Figures/pulse_vem.png}
+\caption{Number of Cherenkov photons impinging the PMT for 3 GeV muons crossing the WCD. The attenuation time is $\sim$ 42.12~ns and the pulse width is $\sim$250~ns \cite{Vasquez2019}}
 \label{pulse_G4}
 \end{center}
 \end{figure}
@@ -263,50 +256,55 @@ The number of photoelectrons depending on the arrival time of the incident photo
 % \end{center}
 % \end{figure}
 
-On the another hand, the electric charge in the cathode is calculated as
-
-\begin{equation}
-Q = N_{pe}*e
-\end{equation}
-where $e$ is the electron charge ($1.6 \time 10^{-19}$ Coulombs). Finally, the cathode current $I_k$ is estimated as follows
+The photocathode current $I_k$ is 
 
 \begin{equation}
 I_k = \frac{Q}{t}
 \end{equation}
 
+where $Q$ is the electric charge in the photocathode which is defined as
+
+\begin{equation}
+Q = N_{pe}*e
+\end{equation}
+where $e$ is the electron charge ($1.6 \times 10^{-19}$~C). 
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/Cathode_current}
-\caption{Cathode current source taking into account the quantum efficiency and the number of Cherenkov photons for a muon of 1 GeV.}
+\includegraphics[width=0.45\textwidth]{Figures/Cathode_current}
+\caption{Photocathode current taking into account the PMT quantum efficiency ($\eta = 22 \%$) and the number of Cherenkov photons created by 3 GeV muons crossing the WCD.}
 \label{cathode}
 \end{center}
 \end{figure}
 
-In Fig. \ref{cathode} the estimated cathode current when a 3 GeV vertical muon impinges the WCD is shown. The maximum peak of the current is roughly 17 nA which can generate a 17 mA anode current setting a PMT gain of 10$^6$.
+In Fig. \ref{cathode} we show the estimated photocathode current for 3 GeV vertical muons impinging the WCD. The maximum peak of the current is $\sim$17 nA which can generate a 17 mA anode current when the PMT gain is 10$^6$. The maximum anode dark current establishes the low boundary of acquisition 0.7~$\mu$A.
 
 \section{RESULTS}
 
-\subsection{Vertical muon charge}
+\subsection{Simulated vertical muon charge}
 
-The PMT bias was set to 1000 V which means a gain 2.9$\times$10$^5$, if a vertical muon hits the WCD a current signal of $\sim$ 5 mA is measured at the PMT anode. A voltage pulse 250 mV amplitude appears across the 50 $\Omega$ load at the anode output. Such pulse is digitized at 40 MHz (25 ns step) in a 12 samples vector with a relation UADC $\approx$ 1 mV as is shown in Fig. \ref{digitized}. The pulse charge (area under curve) for the simulated vertical muon is 321.6 ADC.Bin which is 4$\%$ less than the real value obtained from measurements (333 ADC.bin).
+The PMT model was biased at 1000 V (2.9$\times$10$^5$ gain). When a vertical muon hits the WCD, a current signal of $\sim$5~mA is measured at the anode and a voltage pulse of 250 mV appears across the load resistance (50~$\Omega$). 
+
+The LAGO readout system digitizes the PMT pulses at 40 MHz with a resolution of 10 bits (1 mV/UADC); the pulse shape is stored in a 12 samples vector (300 ns) \cite{SofoHaro2016}. We emulate the digitization process of the model outputs to compare simulations and data. The resulting pulse charge of the simulated vertical muon was 321.6 UADC, while the value obtained from measurements (MuTe WCD) was 333 UADC: a 4$\%$ variation.
 
 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/dig_pulse.png}
-\caption{Gain curve obtained from the Spice simulation.}
-\label{digitized}
-\end{center}
-\end{figure}
-
+% \begin{figure}[h!]
+% \begin{center}
+% \includegraphics[width=0.5\textwidth]{Figures/dig_pulse.png}
+% \caption{Gain curve obtained from the Spice simulation.}
+% \label{digitized}
+% \end{center}
+% \end{figure}
 
 \subsection{Response of the PMT and bias chain model}
 
+Fig. \ref{Pulse} shows the dynode and anode output for a photocathode current of 3.5 nA and a bias voltage of 1000~V. The dynode pulse maximum is 375 mV and the anode is 50 mV. The dynode/anode ratio  is $\sim$7.5 showing that the PMT amplifies 2.66 times the current flowing from the last dynode to the anode. The resulting pulse width $\sim50$~ps fulfills the electron transit time along the PMT which is typically 55~ps.
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/spice_pulse.png}
-\caption{Gain curve obtained from the Spice simulation.}
-\label{QE}
+\includegraphics[width=0.45\textwidth]{Figures/spice_pulse.png}
+\caption{Anode (blue) and dynode (red) outputs obtained from the Spice model at 1000~V for a cathode current of 3.5~nA. The dynode/anode ratios is 7.5 and the pulse width is $\sim50$~ps.}
+\label{Pulse}
 \end{center}
 \end{figure}
 
@@ -318,54 +316,63 @@ The PMT bias was set to 1000 V which means a gain 2.9$\times$10$^5$, if a vertic
 % \end{center}
 % \end{figure}
 
-\subsection{Linearity}
+%\subsection{Linearity}
 
-
-
-
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[width=0.35\textwidth]{Figures/Linear.png}
-\caption{Gain curve obtained from the Spice simulation.}
-\label{QE}
-\end{center}
-\end{figure}
-
-\subsection{Simulation and data comparison}
+The PMT and electronics readout must have a linear behaviour to guarantee an accurate estimation of the deposited energy of particles crossing the WCD. The linearity of the model was measured correlating the dynode and anode pulse amplitude for different photocathode currents and bias voltages. Fig. \ref{Linear} correlates the anode and dynode amplitudes for photocathode currents ranging between 0.6-2.2 nA ($V_B$= 1200~V) and 1.3-4.5 nA ($V_B$= 1100~V).
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.5\textwidth]{Figures/Base.eps}
-\caption{Elemental gain block used to simulate the inter-dynode stages.}
-\label{Chain}
+\includegraphics[width=0.4\textwidth]{Figures/Linear.eps}
+\caption{Correlation between the dynode and anode output voltage at 1200~V(red) and 1100~V(black) for photocathode currents ranging 0.6-4.5 nA.}
+\label{Linear}
 \end{center}
 \end{figure}
+
+The curve slope increases sightly with the bias voltage from 7.52 at 1100~V to 7.68 at 1200~V representing a gain increment $\sim$2. The linear response of the PMT breaks when the PMT reaches its electrical limits at 1800~V (3$\times10^7$ gain) causing a saturation effect in the pulse amplitude. 
+
+\subsection{Model and data comparison}
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.35\textwidth]{Figures/Fit_1100}
-\caption{The general structure.}
-\label{QE}
+\includegraphics[width=0.42\textwidth]{Figures/Base.eps}
+\caption{PCB implementation of the Spice model. The bias voltage is supplied by a EMCO C20 DC/DC converter. The anode and dynode outputs are connected through 50$\Omega$ SMA connectors. A DB15 connector inputs the C20 control signal and the conditioning circuit (dynode amplification) supply. The tapered resistance chain was installed in the top layer while the conditioning circuit is in the bottom layer. The anode (P) and the cathode (K) electrodes are highlighted on the figure.}
+\label{Base}
 \end{center}
 \end{figure}
+
+We assess the model performance in two folds: a functional comparison with the present PMT base of LAGO designed by the Pierre Auger Collaboration (Base-II) \cite{Genolini2001}, and a linearity comparison with data collected by the WCD Chitaga and Nahuelito. 
+
+The PCB (Printed Circuit Board) of the proposed bias circuit (Base-I) is shown Fig. \ref{Base}. The high voltage DC/DC converter EMCO C20 supplies the tapered resistive chain. The output DC coupling was set by SMD capacitors to avoid electrostatic discharges and mechanical damages which has been observed in the Base-II. The PCB was electrically isolated with a paint coating with a dielectric strength of 100KV/mm.
+
+The first test consisted of comparing the electrode voltage distribution in the Spice model, the Base-I and II; the data was normalized respect to the anode (P) voltage. From Fig. \ref{Comparison} we observe an average variation of 0.7$\%$ between the Base-II and the model while between the Base-II and the Base-I the variation is 2.8$\%$.
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[width=0.35\textwidth]{Figures/Fit_1200}
-\caption{Comparison between the spice model and the data acquired by the Chitaga WCD.}
-\label{QE}
+\includegraphics[width=0.45\textwidth]{Figures/LAGO_Auger.eps}
+\caption{Comparison of the electrode voltage distribution between the Spice model (red-line), the Base-I (blue-line) and II (black-line).}
+\label{Comparison}
+\end{center}
+\end{figure}
+
+The model was also compared with data of 30$\times 10^3$ pulses recorded by the Nahuelito and Chitaga WCDs as shown Fig. \ref{Nahuelito_Chitaga}. The Nahuelito's PMT operates at 1500~V with discrimination threshold of 70 mV. The WCD data follows a linear distribution with the majority of the recorded events under 100 mV amplitudes. The dashed black-line represents the PMT response obtained from the Spice model.
+
+The Chitaga's PMT operates at 1000~V with a discrimination threshold of 100 mV. The data distribution is linear but wider than Nahuelito because the WCD dimensions. Another key parameter that changes the data distribution is the water quality of the WCDs.
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.4\textwidth]{Figures/Nahuelito.eps}
+\includegraphics[width=0.4\textwidth]{Figures/Chitaga.eps}
+\caption{Linearity measured on the WCDs Nahuelito and Chitaga operating at 1500~V and 1000~V respectively. The data shows the correlation between the maximum amplitude measured on the dynode and the anode with the LAGO's readout electronics. The dashed-line represents the model response taking into account the WCD operation conditions.}
+\label{Nahuelito_Chitaga}
 \end{center}
 \end{figure}
 
 
-
-Comparación entre la amplitud dínodo y ánodo cambiando de voltaje HV en la simulación y datos de la base diseñada.
-
-Linealidad del PMT
-
-Ref. Design of the photomultiplier bases for the surface detectors of the Pierre Auger Observatory
 \section{CONCLUSIONS}
 
+A PMT and resistive chain model was designed and tested for the LAGO collaboration. The PMT model reproduces the expected gain depending on the bias voltage as well as the voltage distribution along the dynodes with a variance of $\sim$2.8$\%$. The model can be adapted to any PMT architecture by changing the number of electrodes, the voltage distribution ratio and the parameters $k$ and $\alpha$ -- derived from the PMT datasheet.
+
+The linear correlation between the anode and dynode amplitudes of the model and the data recorded by the WCD Chitaga and Nahuelito were evaluated. The vertical muon charge estimated by the model (321.6 UADC) differs only in 4$\%$ from the measured by the MuTe WCD (333 UADC).
 
 \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
                                   % on the last page of the document manually. It shortens
@@ -377,21 +384,13 @@ Ref. Design of the photomultiplier bases for the surface detectors of the Pierre
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \section*{APPENDIX}
 
 % Appendixes should appear before the acknowledgment.
 
 \section*{ACKNOWLEDGMENT}
 
-This work was developed at Halley Research Group at Universidad Industrial de Santander.
-
-
+The authors acknowledge  financial support of the Halley Research Group at Universidad Industrial de Santander. We are also very thankful to LAGO and to the Pierre Auger Collaboration for their continuous support.
 
 \bibliographystyle{unsrt}
 \bibliography{LAGO.bib}
